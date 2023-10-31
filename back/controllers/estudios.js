@@ -17,13 +17,13 @@ const crearEstudio = async (req, res) => {
       Persona: personaEstu,
     });
     crearEstudio.save();
-    return res.status(200).json({
+    return res.status(200).send({
       id: 200,
       Encabezado: "Correcto",
       mensaje: "Estudio Guardado Correctamente",
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(400).send({
       id: 400,
       Encabezado: "Error",
       mensaje: "Error de Consulta: " + error.message,
@@ -47,13 +47,13 @@ const listar = async (req, res) => {
     Estudios.paginate({}, options)
       .then((result) => {
         if (!result) {
-          return res.status(400).json({
+          return res.status(400).send({
             id: 400,
             Encabezado: "Error",
             mensaje: "No hay Registros Para Mostrar",
           });
         } else {
-          return res.status(200).json({
+          return res.status(200).send({
             id: 200,
             Encabezado: "Correcto",
             mensaje: "Lista de Personas",
@@ -66,14 +66,14 @@ const listar = async (req, res) => {
         }
       })
       .catch((error) => {
-        return res.status(400).json({
+        return res.status(400).send({
           id: 400,
           Encabezado: "Error",
           mensaje: "Error al Generar: " + error,
         });
       });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(400).send({
       id: 400,
       Encabezado: "Error",
       mensaje: "Error de Consulta: " + error.messages,
@@ -85,13 +85,13 @@ const listarUno = async (req, res) => {
   try {
     let id = req.params.id;
     consulta = await Estudios.findById(id).exec();
-    return res.status(200).json({
+    return res.status(200).send({
       id: 200,
       Encabezado: "Correcto",
       resultado: consulta,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(400).send({
       id: 400,
       Encabezado: "Error",
       mensaje: "Error de Consulta: " + error.messages,
@@ -103,13 +103,13 @@ const borrar = async (req, res) => {
   try {
     let id = req.params.id;
     consulta = await Estudios.findOneAndDelete({ _id: id }).exec();
-    return res.status(200).json({
+    return res.status(200).send({
       id: 200,
       Encabezado: "Correcto",
       mensaje: "Eliminado Correctamente",
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(400).send({
       id: 400,
       Encabezado: "Error",
       mensaje: "Error de Consulta: " + error.messages,
@@ -133,13 +133,13 @@ const editar = async (req, res) => {
         notas: notas,
       }
     ).exec();
-    return res.status(200).json({
+    return res.status(200).send({
       id: 200,
       Encabezado: "Correcto",
       mensaje: "Editado Correctamente",
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(400).send({
       id: 400,
       Encabezado: "Error",
       mensaje: "Error de Consulta: " + error.messages,

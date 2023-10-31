@@ -1,6 +1,6 @@
+const conexion = require("./models/Conexion");
 const express = require("express");
 const cors = require("cors");
-const conexion = require("./models/Conexion");
 conexion();
 const app = express();
 const puerto = 3900;

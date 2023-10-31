@@ -1,90 +1,188 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import HelperForm from "../../helpers/HelperForm";
+import { Global } from "../../helpers/Global";
+import Swal2 from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal2);
+const IrLogin = (e) => {
+  e.preventDefault();
+  let url = window.location.href;
+  let newURL = url.replace("Registrarse", "");
+  window.location.href = newURL;
+};
 
 //login del usuario
 const Registrarse = () => {
+  const { form, cambiar } = HelperForm({});
+  /*   const MySwal = withReactContent(Swal); */
+
+  const guardarPerfil = async (e) => {
+    e.preventDefault();
+    let nuevaPersona = form;
+
+    //guardar en la api
+
+    const request = await fetch(Global.url + "personales/registrar", {
+      method: "POST",
+      body: JSON.stringify(nuevaPersona),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(request);
+    const data = await request.json();
+    if (data.id == 200) {
+      let titulo = data.Encabezado;
+      let mensaje = data.mensaje;
+      MySwal.fire({
+        title: <strong> {titulo}</strong>,
+        html: <i>{mensaje}</i>,
+        icon: "success",
+      });
+    } else {
+      let titulo = data.Encabezado;
+      let mensaje = data.mensaje;
+      MySwal.fire({
+        title: <strong> {titulo}</strong>,
+        html: <i>{mensaje}</i>,
+        icon: "error",
+      });
+    }
+  };
   return (
     <>
       <div className="limiter">
-		<div className="container-login100">
-			<div className="wrap-login100">
-				<div className="login100-pic js-tilt" data-tilt>
-					<img src="../src/assets/images/img-01.png" alt="IMG"/>
-				</div>
+        <div className="container-login100">
+          <div className="wrap-login100">
+            <div className="login100-pic js-tilt" data-tilt>
+              <img src="../src/assets/images/img-01.png" alt="IMG" />
+            </div>
 
-				<form className="login100-form validate-form">
-					<span className="login100-form-title">
-						Registrate
-					</span>
+            <form
+              className="login100-form validate-form"
+              onSubmit={guardarPerfil}
+              style={{ marginTop: "-20%" }}
+            >
+              <span className="login100-form-title">Registrate</span>
 
-					<div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-						<input className="input100" type="text" name="email" placeholder="Email"/>
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
-							<i className="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+              <div className="wrap-input100 validate-input">
+                <input
+                  className="input100"
+                  type="text"
+                  name="nombre"
+                  placeholder="Nombres"
+                  onChange={cambiar}
+                />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i className="bi bi-person-fill"></i>
+                </span>
+              </div>
 
-					<div className="wrap-input100 validate-input" data-validate="Password is required" >
-                        <input className="input100" type="text" name="email" placeholder="Email"/>
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
-							<i className="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
+              <div className="wrap-input100 validate-input">
+                <input
+                  className="input100"
+                  type="text"
+                  name="apellidos"
+                  placeholder="Apellidos"
+                  onChange={cambiar}
+                />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i class="bi bi-person-fill"></i>
+                </span>
+              </div>
 
-                    <div className="wrap-input100 validate-input" data-validate="">
-						<input className="input100" type="text" name="Nombre" placeholder="name"/>
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
-							<i className="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+              <div className="wrap-input100 validate-input">
+                <input
+                  className="input100"
+                  type="date"
+                  name="fechaNacimiento"
+                  placeholder="Fecha de Nacimiento"
+                  onChange={cambiar}
+                />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i className="bi bi-calendar-event-fill"></i>
+                </span>
+              </div>
 
-					<div className="wrap-input100 validate-input" data-validate="">
-						<input className="input100" type="text" name="Apellido" placeholder="last name"/>
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
-							<i className="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
-					<div className="wrap-input100 validate-input" data-validate="">
-						<input className="input100" type="text" name="Telefono" placeholder="Phone number"/>
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
-							<i className="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+              <div className="wrap-input100 validate-input">
+                <input
+                  className="input100"
+                  type="text"
+                  name="direccion"
+                  placeholder="Direccion"
+                  onChange={cambiar}
+                />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i className="bi bi-signpost-split-fill"></i>
+                </span>
+              </div>
 
-					<div className="wrap-input100 validate-input" data-validate="">
-						<input className="input100" type="date" name="Fecha" placeholder="birthday"/>
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
-							<i className="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
+              <div
+                className="wrap-input100 validate-input"
+                data-validate="Correo valido es requerido: ex@abc.xyz"
+              >
+                <input
+                  className="input100"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={cambiar}
+                />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i className="bi bi-envelope-at-fill"></i>
+                </span>
+              </div>
+              <div
+                className="wrap-input100 validate-input"
+                data-validate="Contraseña es requerida"
+              >
+                <input
+                  className="input100"
+                  type="password"
+                  name="password"
+                  placeholder="Contraseña"
+                  onChange={cambiar}
+                />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i className="bi bi-lock-fill"></i>
+                </span>
+              </div>
 
-					<div className="wrap-input100 validate-input" data-validate="">
-						<input className="input100" type="text" name="Direccion" placeholder="Adress"/>
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
-							<i className="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
-					<div className="container-login100-form-btn">
-						<button className="login100-form-btn">
-							Registrate
-						</button>
-					</div>
-					<div className="text-center p-t-136">
-						<a className="txt2" href="./src/components/Registrarse.jsx">
-							Log in
-							<i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+              <div className="wrap-input100 validate-input">
+                <input
+                  className="input100"
+                  type="number"
+                  name="telefono"
+                  placeholder="Telefono"
+                  onChange={cambiar}
+                />
+                <span className="focus-input100"></span>
+                <span className="symbol-input100">
+                  <i className="bi bi-telephone-fill"></i>
+                </span>
+              </div>
+
+              <div className="container-login100-form-btn">
+                <button type="submit" className="login100-form-btn">
+                  Registrate
+                </button>
+              </div>
+              <div className="text-center p-t-25">
+                <button className="login100-form-btn" onClick={IrLogin}>
+                  Iniciar Session <br /> <i className="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
