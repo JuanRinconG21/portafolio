@@ -27,16 +27,21 @@ const Login = () => {
         "Content-Type": "application/json",
       },
     });
-    console.log(request);
     const data = await request.json();
     if (data.id == 200) {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;
+      let token2 = data.user.token;
+      console.log(token2);
       MySwal.fire({
         title: <strong> {titulo}</strong>,
         html: <i>{mensaje}</i>,
         icon: "success",
       });
+      setTimeout(() => {
+        let url = window.location.href;
+        window.location.href = url + "Crearproyecto";
+      }, 3000);
     } else {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;

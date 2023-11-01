@@ -1,13 +1,15 @@
 import React from "react";
+//import React, { useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Login from "../components/layout/Login"; 
+import Login from "../components/layout/Login";
 import Registrarse from "../components/layout/Registrarse";
 import Crearproyecto from "../components/Main/Crearproyecto";
-import Crearestudio from "../components/Main/Crearestudio"
+import Crearestudio from "../components/Main/Crearestudio";
+
 const Routing = () => {
   //Creacion del sistema de rutas
   return (
-    <BrowserRouter>    
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/Registrarse" element={<Registrarse />} />

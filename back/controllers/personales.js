@@ -180,7 +180,7 @@ const login = async (req, res) => {
           expiresIn: "1d",
         }
       );
-      return res.status(400).send({
+      return res.status(200).send({
         id: 200,
         Encabezado: "Correcto",
         mensaje: "Ingreso Exitoso",
