@@ -5,7 +5,7 @@ import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal2);
 
-const Crearproyecto = () => {
+const Añadirestudio = () => {
   const { form, cambiar } = HelperForm({});
 
   const AgregarProyecto = async (e) => {
@@ -188,12 +188,12 @@ const Crearproyecto = () => {
               <i className="fa fa-bars"></i>
             </button>
 
-            <form className="d-none d-sm-inline-block htmlForm-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            {/*   <htmlForm className="d-none d-sm-inline-block htmlForm-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
               <div className="input-group">
                 <input
                   type="text"
                   className="htmlForm-control bg-light border-0 small"
-                  placeholder="Search For..."
+                  placeholder="Search htmlFor..."
                   aria-label="Search"
                   aria-describedby="basic-addon2"
                 />
@@ -203,7 +203,7 @@ const Crearproyecto = () => {
                   </button>
                 </div>
               </div>
-            </form> 
+            </htmlForm> */}
 
             <ul className="navbar-nav ml-auto">
               <div className="topbar-divider d-none d-sm-block"></div>
@@ -231,7 +231,7 @@ const Crearproyecto = () => {
           </nav>
           {/*-----------------------------aside-----------------------------------*/}
           <div className="text-center">
-            <h1 className="h4 text-gray-900 mb-4">Crear Proyecto</h1>
+            <h1 className="h4 text-gray-900 mb-4">Editar proyecto</h1>
           </div>
           <div className="container">
             <div className="">
@@ -277,7 +277,7 @@ const Crearproyecto = () => {
                           type="submit"
                           className="btn btn-facebook btn-user btn-block"
                         >
-                          Agregar
+                          Editar Proyecto
                         </button>
                       </form>
                       <hr />
@@ -293,4 +293,4 @@ const Crearproyecto = () => {
   );
 };
 
-export default Crearproyecto;
+export default Añadirestudio;

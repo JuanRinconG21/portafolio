@@ -45,136 +45,138 @@ const Crearestudio = () => {
     <div id="wrapper">
       {/* ----------------------------dashboard------------------------------- */}
       <ul
-        className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar"
-      >
-        <a
-          className="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
-        >
-          <div className="sidebar-brand-icon rotate-n-15">
-            <i className="bi bi-person-circle"></i>
-          </div>
+                className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+                id="accordionSidebar"
+            >
+                <a
+                    className="sidebar-brand d-flex align-items-center justify-content-center"
+                    href="index.html"
+                >
+                    <div className="sidebar-brand-icon rotate-n-15">
+                        <i className="bi bi-person-circle"></i>
+                    </div>
 
-          <div className="sidebar-brand-text mx-3">Portafolio</div>
-        </a>
+                    <div className="sidebar-brand-text mx-3">Portafolio</div>
+                </a>
 
-        <hr className="sidebar-divider my-0" />
+                <hr className="sidebar-divider my-0" />
 
-        <li className="nav-item active">
-          <a className="nav-link" href="index.html">
-            <i className="bi bi-align-start"></i>
-            <span>Inicio</span>
-          </a>
-        </li>
+                <li className="nav-item active">
+                    <a className="nav-link" href="Inicio">
+                        <i className="bi bi-align-start"></i>
+                        <span>Inicio</span>
+                        <a href=""></a>
+                    </a>
+                </li>
 
-        <hr className="sidebar-divider" />
+                <hr className="sidebar-divider" />
 
-        <div className="sidebar-heading">Proyectos</div>
+                <div className="sidebar-heading">Proyectos</div>
 
-        <li className="nav-item">
-          <a
-            className="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
-          >
-            <i className="bi bi-building"></i>
-            <span>Proyectos</span>
-          </a>
-          <div
-            id="collapseTwo"
-            className="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-          >
-            <div className="bg-white py-2 collapse-inner rounded">
-              <h6 className="collapse-header">Custom Components:</h6>
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="Proyectos"
+                        data-toggle="collapse"
+                        data-target="#collapseTwo"
+                        aria-expanded="true"
+                        aria-controls="collapseTwo"
+                    >
+                        <i className="bi bi-building"></i>
+                        <span> Proyectos</span>
+                    </a>
+                    <div
+                        id="collapseTwo"
+                        className="collapse"
+                        aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar"
+                    >
+                        <div className="bg-white py-2 collapse-inner rounded">
+                            <h6 className="collapse-header">Custom Components:</h6>
 
-              <a className="collapse-item" href="cards.html">
-                Cards
-              </a>
-            </div>
-          </div>
-        </li>
+                            <a className="collapse-item" href="cards.html">
+                                Cards
+                            </a>
+                        </div>
+                    </div>
+                </li>
 
-        <li className="nav-item">
-          <a
-            className="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
-          >
-            <i className="bi bi-pencil-square"></i>
-            <span>Crear Proyecto</span>
-          </a>
-          <div
-            id="collapseTwo"
-            className="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-          >
-            <div className="bg-white py-2 collapse-inner rounded">
-              <h6 className="collapse-header">Custom Components:</h6>
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="Crearproyecto"
+                        data-toggle="collapse"
+                        data-target="#collapseTwo"
+                        aria-expanded="true"
+                        aria-controls="collapseTwo"
+                    >
+                        <i className="bi bi-pencil-square"></i>
+                        <span>Crear Proyecto</span>
+                    </a>
+                    <div
+                        id="collapseTwo"
+                        className="collapse"
+                        aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar"
+                    >
+                        <div className="bg-white py-2 collapse-inner rounded">
+                            <h6 className="collapse-header">Custom Components:</h6>
 
-              <a className="collapse-item" href="cards.html">
-                Cards
-              </a>
-            </div>
-          </div>
-        </li>
-        <hr className="sidebar-divider" />
+                            <a className="collapse-item" href="cards.html">
+                                Cards
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <hr className="sidebar-divider" />
 
-        <div className="sidebar-heading">Estudios</div>
+                <div className="sidebar-heading">Estudios</div>
 
-        <li className="nav-item">
-          <a
-            className="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
-          >
-            <i className="bi bi-marker-tip"></i>
-            <span>Estudios</span>
-          </a>
-        </li>
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="Estudios"
+                        data-toggle="collapse"
+                        data-target="#collapsePages"
+                        aria-expanded="true"
+                        aria-controls="collapsePages"
+                    >
+                        <i className="bi bi-marker-tip"></i>
+                        <span>Estudios</span>
+                    </a>
+                </li>
 
-        <li className="nav-item">
-          <a
-            className="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
-          >
-            <i className="bi bi-pencil-square"></i>
-            <span>Añadir Estudios</span>
-          </a>
-        </li>
-        <hr className="sidebar-divider" />
-        <li className="nav-item">
-          <a className="nav-link" href="charts.html">
-            <i className="bi bi-box-arrow-in-left"></i>
-            <span>Log in</span>
-          </a>
-        </li>
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="Crearestudio"
+                        data-toggle="collapse"
+                        data-target="#collapsePages"
+                        aria-expanded="true"
+                        aria-controls="collapsePages"
+                    >
+                        <i className="bi bi-pencil-square"></i>
+                        <span>Añadir Estudios</span>
+                    </a>
+                </li>
+                <hr className="sidebar-divider" />
+                <li className="nav-item">
 
-        <li className="nav-item">
-          <a className="nav-link" href="tables.html">
-            <i className="bi bi-box-arrow-right"></i>
-            <span>Sing up</span>
-          </a>
-        </li>
+                    <a className="nav-link" href="Login">
+                        <i className="bi bi-box-arrow-in-left"></i>
+                        <span>Log in</span>
+                    </a>
+                </li>
 
-        <hr className="sidebar-divider d-none d-md-block" />
-      </ul>
+                <li className="nav-item">
+                    <a className="nav-link" href="Registrarse">
+                        <i className="bi bi-box-arrow-right"></i>
+                        <span>Sing up</span>
+                    </a>
+                </li>
+
+                <hr className="sidebar-divider d-none d-md-block" />
+            </ul>
       {/* ----------------------------navbar------------------------------- */}
       <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
@@ -184,12 +186,12 @@ const Crearestudio = () => {
               className="btn btn-link d-md-none rounded-circle mr-3"
             ></button>
 
-            {/* <htmlForm className="d-none d-sm-inline-block htmlForm-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+<form className="d-none d-sm-inline-block htmlForm-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
               <div className="input-group">
                 <input
                   type="text"
                   className="htmlForm-control bg-light border-0 small"
-                  placeholder="Search htmlFor..."
+                  placeholder="Search For..."
                   aria-label="Search"
                   aria-describedby="basic-addon2"
                 />
@@ -199,7 +201,7 @@ const Crearestudio = () => {
                   </button>
                 </div>
               </div>
-            </htmlForm> */}
+            </form> 
 
             <ul className="navbar-nav ml-auto">
               <div className="topbar-divider d-none d-sm-block"></div>

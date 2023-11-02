@@ -5,7 +5,7 @@ import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal2);
 
-const Crearproyecto = () => {
+const Editarproyecto = () => {
   const { form, cambiar } = HelperForm({});
 
   const AgregarProyecto = async (e) => {
@@ -231,7 +231,7 @@ const Crearproyecto = () => {
           </nav>
           {/*-----------------------------aside-----------------------------------*/}
           <div className="text-center">
-            <h1 className="h4 text-gray-900 mb-4">Crear Proyecto</h1>
+            <h1 className="h4 text-gray-900 mb-4">Editar proyecto</h1>
           </div>
           <div className="container">
             <div className="">
@@ -277,7 +277,7 @@ const Crearproyecto = () => {
                           type="submit"
                           className="btn btn-facebook btn-user btn-block"
                         >
-                          Agregar
+                          Editar Proyecto
                         </button>
                       </form>
                       <hr />
@@ -293,4 +293,4 @@ const Crearproyecto = () => {
   );
 };
 
-export default Crearproyecto;
+export default Editarproyecto;

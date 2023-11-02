@@ -5,46 +5,46 @@ import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal2);
 
-const Crearproyecto = () => {
-  const { form, cambiar } = HelperForm({});
+const Estudios = () => {
+    const { form, cambiar } = HelperForm({});
 
-  const AgregarProyecto = async (e) => {
-    e.preventDefault();
-    let formulario = form;
+    const AgregarProyecto = async (e) => {
+        e.preventDefault();
+        let formulario = form;
 
-    //guardar en la api
+        //guardar en la api
 
-    const request = await fetch(Global.url + "proyectos/crear", {
-      method: "POST",
-      body: JSON.stringify(formulario),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNkMTIyOTg2ODIxMzA1ZjM2NzVlNDUiLCJlbWFpbCI6ImpvdGFAZ21haWwuY29tIiwiaWF0IjoxNjk4ODQ1NTQ1LCJleHAiOjE2OTg5MzE5NDV9.7OuS3GfXRlyIB-O5VD0u3lz9cm88cwP32iTFgCZWYxM`,
-      },
-    });
-    const data = await request.json();
-    if (data.id == 200) {
-      let titulo = data.Encabezado;
-      let mensaje = data.mensaje;
-      MySwal.fire({
-        title: <strong> {titulo}</strong>,
-        html: <i>{mensaje}</i>,
-        icon: "success",
-      });
-    } else {
-      let titulo = data.Encabezado;
-      let mensaje = data.mensaje;
-      MySwal.fire({
-        title: <strong> {titulo}</strong>,
-        html: <i>{mensaje}</i>,
-        icon: "error",
-      });
-    }
-  };
-  return (
-    <div id="wrapper">
-      {/* ----------------------------dashboard------------------------------- */}
-      <ul
+        const request = await fetch(Global.url + "proyectos/crear", {
+            method: "POST",
+            body: JSON.stringify(formulario),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNkMTIyOTg2ODIxMzA1ZjM2NzVlNDUiLCJlbWFpbCI6ImpvdGFAZ21haWwuY29tIiwiaWF0IjoxNjk4ODQ1NTQ1LCJleHAiOjE2OTg5MzE5NDV9.7OuS3GfXRlyIB-O5VD0u3lz9cm88cwP32iTFgCZWYxM`,
+            },
+        });
+        const data = await request.json();
+        if (data.id == 200) {
+            let titulo = data.Encabezado;
+            let mensaje = data.mensaje;
+            MySwal.fire({
+                title: <strong> {titulo}</strong>,
+                html: <i>{mensaje}</i>,
+                icon: "success",
+            });
+        } else {
+            let titulo = data.Encabezado;
+            let mensaje = data.mensaje;
+            MySwal.fire({
+                title: <strong> {titulo}</strong>,
+                html: <i>{mensaje}</i>,
+                icon: "error",
+            });
+        }
+    };
+    return (
+        <div id="wrapper">
+            {/* ----------------------------dashboard------------------------------- */}
+            <ul
                 className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
                 id="accordionSidebar"
             >
@@ -177,120 +177,69 @@ const Crearproyecto = () => {
 
                 <hr className="sidebar-divider d-none d-md-block" />
             </ul>
-      {/* ----------------------------navbar------------------------------- */}
-      <div id="content-wrapper" className="d-flex flex-column">
-        <div id="content">
-          <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-            <button
-              id="sidebarToggleTop"
-              className="btn btn-link d-md-none rounded-circle mr-3"
-            >
-              <i className="fa fa-bars"></i>
-            </button>
-
-            <form className="d-none d-sm-inline-block htmlForm-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="htmlForm-control bg-light border-0 small"
-                  placeholder="Search For..."
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                />
-                <div className="input-group-append">
-                  <button className="btn btn-primary" type="button">
-                    <i className="bi bi-search"></i>
-                  </button>
-                </div>
-              </div>
-            </form> 
-
-            <ul className="navbar-nav ml-auto">
-              <div className="topbar-divider d-none d-sm-block"></div>
-
-              <li className="nav-item dropdown no-arrow">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="userDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                    Usuario
-                  </span>
-                  <img
-                    className="img-profile rounded-circle"
-                    src="../../src/assets/images/undraw_profile.svg"
-                  ></img>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          {/*-----------------------------aside-----------------------------------*/}
-          <div className="text-center">
-            <h1 className="h4 text-gray-900 mb-4">Crear Proyecto</h1>
-          </div>
-          <div className="container">
-            <div className="">
-              <div className="card-body p-0">
-                <div className="row">
-                  <div className="col-lg-11">
-                    <div className="p-5">
-                      <form className="user" onSubmit={AgregarProyecto}>
-                        <div className="form-group">
-                          <input
-                            type="text"
-                            className="form-control form-control-user"
-                            id=""
-                            placeholder="Nombre"
-                            name="nombre"
-                            onChange={cambiar}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <textarea
-                            type="text"
-                            className="form-control form-control-user"
-                            id=""
-                            placeholder="Descripcion"
-                            name="detalle"
-                            onChange={cambiar}
-                          ></textarea>
-                        </div>
-                        <div className="form-group">
-                          <input
-                            type="url"
-                            className="form-control form-control-user"
-                            id=""
-                            placeholder="Link"
-                            name="link"
-                            onChange={cambiar}
-                          />
-                        </div>
-
-                        <hr />
-
+            {/* ----------------------------navbar------------------------------- */}
+            <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content">
+                    <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                         <button
-                          type="submit"
-                          className="btn btn-facebook btn-user btn-block"
+                            id="sidebarToggleTop"
+                            className="btn btn-link d-md-none rounded-circle mr-3"
                         >
-                          Agregar
+                            <i className="fa fa-bars"></i>
                         </button>
-                      </form>
-                      <hr />
+
+                        <form className="d-none d-sm-inline-block htmlForm-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div className="input-group">
+                                <input
+                                    type="text"
+                                    className="htmlForm-control bg-light border-0 small"
+                                    placeholder="Search For..."
+                                    aria-label="Search"
+                                    aria-describedby="basic-addon2"
+                                />
+                                <div className="input-group-append">
+                                    <button className="btn btn-primary" type="button">
+                                        <i className="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <ul className="navbar-nav ml-auto">
+                            <div className="topbar-divider d-none d-sm-block"></div>
+
+                            <li className="nav-item dropdown no-arrow">
+                                <a
+                                    className="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="userDropdown"
+                                    role="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                >
+                                    <span className="mr-2 d-none d-lg-inline text-gray-600 small">
+                                        Usuario
+                                    </span>
+                                    <img
+                                        className="img-profile rounded-circle"
+                                        src="../../src/assets/images/undraw_profile.svg"
+                                    ></img>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    {/*-----------------------------aside-----------------------------------*/}
+                    
+                    <div className="text-center">
+                        <h1 className="h4 text-gray-900 mb-4">Inicio</h1>
                     </div>
-                  </div>
+                    
+                   
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default Crearproyecto;
+export default Estudios;
