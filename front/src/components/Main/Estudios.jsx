@@ -232,9 +232,126 @@ const Estudios = () => {
                     {/*-----------------------------aside-----------------------------------*/}
                     
                     <div className="text-center">
-                        <h1 className="h4 text-gray-900 mb-4">Inicio</h1>
+                        <h1 className="h4 text-gray-900 mb-4">Estudios</h1>
                     </div>
-                    
+                    <div className="container-fluid">
+                        <div className="row">
+
+                            <div className="col-3">
+                                <div className="card shadow mb-4">
+
+                                    <div className="card-header py-3">                                    
+                                        <p className="m-0 font-weight-bold text-primary">Nombre Usuario</p>
+                                            <img
+                                                className="img-profile rounded-circle " 
+                                                style={{with: '70px', height: '70px'}  }
+                                                src="../../src/assets/images/undraw_profile.svg"
+                                            ></img>                                 
+                                    </div>
+                                    <div className="div" style={{marginTop: '5px', marginLeft: '10px'}}>
+                                        <p>Nombre:</p>
+                                        <br />
+                                        <p>Telefono</p>
+                                        <br />
+                                        <p>direccion</p>
+                                    </div>
+                                    <hr />
+                                </div>
+                            </div>
+
+                            <div className="col-lg-9">
+
+                                <div className="card mb-4 py-3 border-left-primary">
+                                    <div className="card-body">
+                                        Tipo:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Detalle:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Fecha de finalizacion:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Notas:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Persona:
+                                    </div>
+                                </div>
+
+                                <div className="card mb-4 py-3 border-left-primary">
+                                    <div className="card-body">
+                                        Tipo:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Detalle:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Fecha de finalizacion:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Notas:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Persona:
+                                    </div>
+                                </div>
+
+
+                                <div className="card mb-4 py-3 border-left-primary">
+                                    <div className="card-body">
+                                        Tipo:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Detalle:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Fecha de finalizacion:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Notas:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Persona:
+                                    </div>
+                                </div>
+                                <div className="card mb-4 py-3 border-left-primary">
+                                    <div className="card-body">
+                                        Tipo:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Detalle:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Fecha de finalizacion:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Notas:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Persona:
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                    
                 </div>
             </div>

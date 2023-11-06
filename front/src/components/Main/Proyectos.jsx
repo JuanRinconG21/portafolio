@@ -237,69 +237,103 @@ const Proyectos = () => {
                     </div>
                     <div className="container-fluid">
                         <div className="row">
-                            
-                                <div className="col-3">
-                                    <div className="card shadow mb-4">
 
-                                        <div className="card-header py-3">
-                                            <h6 className="m-0 font-weight-bold text-primary">Nombre Usuario</h6>
-                                        </div>
+                            <div className="col-3">
+                                <div className="card shadow mb-4">
 
-                                        <div className="card-body">
-                                            <div className="chart-pie pt-4">
-                                                <canvas id="myPieChart"></canvas>
-                                            </div>
-                                            <hr />
-                                            Styling for the donut chart can be found in the
-                                            <code>/js/demo/chart-pie-demo.js</code> file.
-                                        </div>
+                                    <div className="card-header py-3">                                    
+                                        <p className="m-0 font-weight-bold text-primary">Nombre Usuario</p>
+                                            <img
+                                                className="img-profile rounded-circle " 
+                                                style={{with: '70px', height: '70px'}  }
+                                                src="../../src/assets/images/undraw_profile.svg"
+                                            ></img>                                 
                                     </div>
+                                    <div className="div" style={{marginTop: '5px', marginLeft: '10px'}}>
+                                        <p>Nombre:</p>
+                                        <br />
+                                        <p>Telefono</p>
+                                        <br />
+                                        <p>direccion</p>
+                                    </div>
+                                    <hr />
                                 </div>
-                           
+                            </div>
+
                             <div className="col-lg-9">
 
                                 <div className="card mb-4 py-3 border-left-primary">
                                     <div className="card-body">
-                                        .border-left-primary
+                                        Nombre:
                                     </div>
-                                </div>
-
-                                <div className="card mb-4 py-3 border-left-secondary">
+                                    <hr />
                                     <div className="card-body">
-                                        .border-left-secondary
+                                        Detalle:
                                     </div>
-                                </div>
-
-                                <div className="card mb-4 py-3 border-left-success">
+                                    <hr />
                                     <div className="card-body">
-                                        .border-left-success
+                                        Link:
                                     </div>
-                                </div>
-
-                                <div className="card mb-4 py-3 border-left-info">
+                                    <hr />
                                     <div className="card-body">
-                                        .border-left-info
+                                        Persona
                                     </div>
                                 </div>
 
-                                <div className="card mb-4 py-3 border-left-warning">
+                                <div className="card mb-4 py-3 border-left-primary">
                                     <div className="card-body">
-                                        .border-left-warning
+                                        Nombre:
                                     </div>
-                                </div>
-
-                                <div className="card mb-4 py-3 border-left-danger">
+                                    <hr />
                                     <div className="card-body">
-                                        .border-left-danger
+                                        Detalle:
                                     </div>
-                                </div>
-
-                                <div className="card mb-4 py-3 border-left-dark">
+                                    <hr />
                                     <div className="card-body">
-                                        .border-left-dark
+                                        Link:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Persona
                                     </div>
                                 </div>
 
+
+                                <div className="card mb-4 py-3 border-left-primary">
+                                    <div className="card-body">
+                                        Nombre:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Detalle:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Link:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Persona
+                                    </div>
+                                </div>
+
+                                <div className="card mb-4 py-3 border-left-primary">
+                                    <div className="card-body">
+                                        Nombre:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Detalle:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Link:
+                                    </div>
+                                    <hr />
+                                    <div className="card-body">
+                                        Persona
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

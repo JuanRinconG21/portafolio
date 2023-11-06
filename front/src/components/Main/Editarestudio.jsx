@@ -271,8 +271,28 @@ const Editarestudio = () => {
                           />
                         </div>
 
+                     
+                        <div className="form-group">
+                          <input
+                            type="date"
+                            className="form-control form-control-user"
+                            id=""
+                            placeholder="Fecha finalizacion"
+                            name="Fecha"
+                            onChange={cambiar}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <input
+                            type="text"
+                            className="form-control form-control-user"
+                            id=""
+                            placeholder="Notas"
+                            name="Notas"
+                            onChange={cambiar}
+                          />
+                        </div>
                         <hr />
-
                         <button
                           type="submit"
                           className="btn btn-facebook btn-user btn-block"
