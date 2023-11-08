@@ -1,15 +1,17 @@
-import React, { Component, useState } from "react";
+import React, { useEffect, useState } from "react";
 import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import Editarestudio from "./Editarestudio";
+//import { editar } from "../../../../back/controllers/proyectos";
 const MySwal = withReactContent(Swal2);
 
 const Estudios = () => {
   const token = localStorage.getItem("token");
   const eliminarEstudio = (id, nombre) => {
-    console.log("ENTRO");
-    console.log("EL ID ES" + id);
+    // console.log("ENTRO");
+    //console.log("EL ID ES" + id);
 
     MySwal.fire({
       title: `¿ Quieres Eliminar El Estudio de ${nombre} ?`,
@@ -45,7 +47,9 @@ const Estudios = () => {
   //const { form, cambiar } = HelperForm({});
 
   const [estudios, setEstudios] = useState(null);
+  const [Editar, setEditar] = useState(null);
   //const [proyectosMap, setProyectosMap] = useState(null);
+
   fetch(Global.url + "estudios/listar/1", {
     method: "GET", // Método de solicitud (puede ser GET, POST, etc.)
     headers: {
@@ -70,6 +74,7 @@ const Estudios = () => {
     .catch((error) => {
       console.error("Error en la solicitud:", error);
     });
+
   //console.log(JSON.stringify(request));
   //const data = request.json();
   //console.log(data);
@@ -333,10 +338,23 @@ const Estudios = () => {
                           >
                             <i class="bi bi-trash3-fill"></i>
                           </button>
-                          <button type="button" className="btn btn-warning">
+                          <button
+                            type="button"
+                            className="btn btn-warning"
+                            onClick={() => {
+                              setEditar(estudio._id);
+                            }}
+                          >
                             <i class="bi bi-pencil-square"></i>
                           </button>
                         </h1>
+                        {Editar === estudio._id && (
+                          <Editarestudio
+                            detalle={estudio.detalle}
+                            setEditar={setEditar}
+                            id={Editar}
+                          ></Editarestudio>
+                        )}
                       </div>
                     );
                   })

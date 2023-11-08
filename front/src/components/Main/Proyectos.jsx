@@ -3,13 +3,14 @@ import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import Editarproyecto from "./Editarproyecto";
 const MySwal = withReactContent(Swal2);
 
 const Proyectos = () => {
   const token = localStorage.getItem("token");
   const eliminarProyecto = (id, nombre) => {
-    console.log("ENTRO");
-    console.log("EL ID ES" + id);
+    // console.log("ENTRO");
+    //console.log("EL ID ES" + id);
 
     MySwal.fire({
       title: `¿ Quieres Eliminar El Proyecto de ${nombre} ?`,
@@ -45,6 +46,7 @@ const Proyectos = () => {
   //const { form, cambiar } = HelperForm({});
 
   const [proyectos, setProyectos] = useState(null);
+  const [Editar, setEditar] = useState(0);
   //const [proyectosMap, setProyectosMap] = useState(null);
   fetch(Global.url + "proyectos/listar/1", {
     method: "GET", // Método de solicitud (puede ser GET, POST, etc.)
@@ -321,10 +323,25 @@ const Proyectos = () => {
                           >
                             <i class="bi bi-trash3-fill"></i>
                           </button>
-                          <button type="button" className="btn btn-warning">
+                          <button
+                            type="button"
+                            className="btn btn-warning"
+                            onClick={() => {
+                              setEditar(proyecto._id);
+                            }}
+                          >
                             <i class="bi bi-pencil-square"></i>
                           </button>
                         </h1>
+                        {Editar === proyecto._id && (
+                          <Editarproyecto
+                            nombre={proyecto.nombre}
+                            detalle={proyecto.detalle}
+                            link={proyecto.link}
+                            id={proyecto._id}
+                            setEditar={setEditar}
+                          ></Editarproyecto>
+                        )}
                       </div>
                     );
                   })

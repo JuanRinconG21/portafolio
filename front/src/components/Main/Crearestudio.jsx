@@ -238,14 +238,26 @@ const Crearestudio = () => {
                     <div className="p-5">
                       <form className="user" onSubmit={AgregarEstudio}>
                         <div className="form-group">
-                          <input
-                            type="text"
-                            className="form-control form-control-user"
-                            id="exampleFirstName"
+                          <label htmlFor="tipo" style={{ marginLeft: "49%" }}>
+                            Tipo de Estudio
+                          </label>
+                          <select
                             name="tipo"
-                            placeholder="Tipo"
+                            className="form-control form-control-"
+                            id="tipo"
                             onChange={cambiar}
-                          />
+                            style={{ borderRadius: "50px", fontSize: "100%" }}
+                          >
+                            <option value="N/A">Selecciona una opcion: </option>
+                            <option value="TECNICO">Tecnico</option>
+                            <option value="TECNOLOGO">Tecnologo</option>
+                            <option value="PROFESIONAL">Profesional</option>
+                            <option value="ESPECIALIZACION">
+                              Especializacion
+                            </option>
+                            <option value="MAESTRIA">Maestria</option>
+                            <option value="DOCTORADO">Doctorado</option>
+                          </select>
                         </div>
                         <div className="form-group">
                           <input
@@ -268,14 +280,24 @@ const Crearestudio = () => {
                           />
                         </div>
                         <div className="form-group">
-                          <input
-                            type="text"
-                            className="form-control form-control-user"
-                            id="exampleInputEmail"
-                            placeholder="Notas"
+                          <label htmlFor="tipo" style={{ marginLeft: "53%" }}>
+                            Notas
+                          </label>
+                          <select
                             name="notas"
+                            className="form-control form-control-"
+                            id="notas"
                             onChange={cambiar}
-                          />
+                            style={{ borderRadius: "50px", fontSize: "100%" }}
+                          >
+                            <option value="N/A">
+                              Selecciona alguna Nota:{" "}
+                            </option>
+                            <option value="APROBADO">Aprobado</option>
+                            <option value="NO APROBADO">No Aprobado</option>
+                            <option value="EN PROCESO">En Proceso</option>
+                            <option value="DESERCION">Desercion</option>
+                          </select>
                         </div>
 
                         <hr />

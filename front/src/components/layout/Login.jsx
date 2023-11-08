@@ -33,7 +33,7 @@ const Login = () => {
       let mensaje = data.mensaje;
       let token2 = data.user.token;
       localStorage.setItem("token", token2);
-      console.log(token2);
+      //console.log(token2);
       MySwal.fire({
         title: <strong> {titulo}</strong>,
         html: <i>{mensaje}</i>,
