@@ -41,8 +41,8 @@ const Login = () => {
       });
       setTimeout(() => {
         let url = window.location.href;
-        window.location.href = url + "Crearproyecto";
-      }, 3000);
+        window.location.href = url + "DashBoard";
+      }, 1500);
     } else {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;
