@@ -39,48 +39,16 @@ const Aside = () => {
             <span> Proyectos</span>
           </a>
         </NavLink>
-        <div
-          id="collapseTwo"
-          className="collapse"
-          aria-labelledby="headingTwo"
-          data-parent="#accordionSidebar"
-        >
-          <div className="bg-white py-2 collapse-inner rounded">
-            <h6 className="collapse-header">Custom Components:</h6>
-
-            <a className="collapse-item" href="cards.html">
-              Cards
-            </a>
-          </div>
-        </div>
       </li>
 
       <li className="nav-item">
         <NavLink to="/Dashboard/CrearProyecto">
           <a
             className="nav-link collapsed"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
           >
             <i className="bi bi-pencil-square"></i>
             <span>Crear Proyecto</span>
           </a>
-          <div
-            id="collapseTwo"
-            className="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-          >
-            <div className="bg-white py-2 collapse-inner rounded">
-              <h6 className="collapse-header">Custom Components:</h6>
-
-              <a className="collapse-item" href="cards.html">
-                Cards
-              </a>
-            </div>
-          </div>
         </NavLink>
       </li>
       <hr className="sidebar-divider" />
@@ -91,10 +59,6 @@ const Aside = () => {
         <NavLink to="/Dashboard/Estudios">
           <a
             className="nav-link collapsed"
-            data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
           >
             <i className="bi bi-marker-tip"></i>
             <span>Estudios</span>
@@ -104,33 +68,19 @@ const Aside = () => {
 
       <li className="nav-item">
         <NavLink to="/Dashboard/CrearEstudio">
-          <a
-            className="nav-link collapsed"
-            data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
-          >
+          <a className="nav-link collapsed">
             <i className="bi bi-pencil-square"></i>
             <span>Añadir Estudios</span>
           </a>
         </NavLink>
       </li>
       <hr className="sidebar-divider" />
-      <li className="nav-item">
-        <NavLink to="/">
-          <a className="nav-link" href="Login">
-            <i className="bi bi-box-arrow-in-left"></i>
-            <span>Log in</span>
-          </a>
-        </NavLink>
-      </li>
 
       <li className="nav-item">
-        <NavLink to="/Registrarse">
+        <NavLink to="/Dashboard/Salir">
           <a className="nav-link" href="Registrarse">
             <i className="bi bi-box-arrow-right"></i>
-            <span>Sing up</span>
+            <span>Salir</span>
           </a>
         </NavLink>
       </li>

@@ -3,51 +3,81 @@ import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
+import { NavLink } from "react-router-dom";
 const MySwal = withReactContent(Swal2);
-const IrLogin = (e) => {
-  e.preventDefault();
-  let url = window.location.href;
-  let newURL = url.replace("Registrarse", "");
-  window.location.href = newURL;
-};
 
 //login del usuario
 const Registrarse = () => {
   const { form, cambiar } = HelperForm({});
   /*   const MySwal = withReactContent(Swal); */
-
+  const IrLogin = (e) => {
+    e.preventDefault();
+    let url = window.location.href;
+    let NewUrl = url.replace("Registrarse", "");
+    window.location.href = NewUrl;
+  };
   const guardarPerfil = async (e) => {
     e.preventDefault();
-    let nuevaPersona = form;
-
-    //guardar en la api
-
-    const request = await fetch(Global.url + "personales/registrar", {
-      method: "POST",
-      body: JSON.stringify(nuevaPersona),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(request);
-    const data = await request.json();
-    if (data.id == 200) {
-      let titulo = data.Encabezado;
-      let mensaje = data.mensaje;
+    const nombre = document.getElementById("nombre");
+    const apellidos = document.getElementById("apellidos");
+    const fechaNacimiento = document.getElementById("fechaNacimiento");
+    const direccion = document.getElementById("direccion");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const telefono = document.getElementById("telefono");
+    if (
+      telefono.value == "" ||
+      password.value == "" ||
+      email.value == "" ||
+      direccion.value == "" ||
+      fechaNacimiento.value == "" ||
+      apellidos.value == "" ||
+      nombre.value == ""
+    ) {
       MySwal.fire({
-        title: <strong> {titulo}</strong>,
-        html: <i>{mensaje}</i>,
-        icon: "success",
-      });
-    } else {
-      let titulo = data.Encabezado;
-      let mensaje = data.mensaje;
-      MySwal.fire({
-        title: <strong> {titulo}</strong>,
-        html: <i>{mensaje}</i>,
+        title: <strong> {"ERROR"}</strong>,
+        html: <i>{"No deje Campos Vacios"}</i>,
         icon: "error",
       });
+    } else {
+      let nuevaPersona = form;
+
+      //guardar en la api
+
+      const request = await fetch(Global.url + "personales/registrar", {
+        method: "POST",
+        body: JSON.stringify(nuevaPersona),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await request.json();
+      if (data.id == 200) {
+        let titulo = data.Encabezado;
+        let mensaje = data.mensaje;
+        MySwal.fire({
+          title: <strong> {titulo}</strong>,
+          html: <i>{mensaje}</i>,
+          icon: "success",
+        });
+        telefono.value = "";
+        password.value = "";
+        email.value = "";
+        direccion.value = "";
+        fechaNacimiento.value = "";
+        apellidos.value = "";
+        nombre.value = "";
+      } else {
+        const email = document.getElementById("email");
+        email.value = "";
+        let titulo = data.Encabezado;
+        let mensaje = data.mensaje;
+        MySwal.fire({
+          title: <strong> {titulo}</strong>,
+          html: <i>{mensaje}</i>,
+          icon: "error",
+        });
+      }
     }
   };
   return (
@@ -71,6 +101,7 @@ const Registrarse = () => {
                   className="input100"
                   type="text"
                   name="nombre"
+                  id="nombre"
                   placeholder="Nombres"
                   onChange={cambiar}
                 />
@@ -85,6 +116,7 @@ const Registrarse = () => {
                   className="input100"
                   type="text"
                   name="apellidos"
+                  id="apellidos"
                   placeholder="Apellidos"
                   onChange={cambiar}
                 />
@@ -99,6 +131,7 @@ const Registrarse = () => {
                   className="input100"
                   type="date"
                   name="fechaNacimiento"
+                  id="fechaNacimiento"
                   placeholder="Fecha de Nacimiento"
                   onChange={cambiar}
                 />
@@ -113,6 +146,7 @@ const Registrarse = () => {
                   className="input100"
                   type="text"
                   name="direccion"
+                  id="direccion"
                   placeholder="Direccion"
                   onChange={cambiar}
                 />
@@ -130,6 +164,7 @@ const Registrarse = () => {
                   className="input100"
                   type="email"
                   name="email"
+                  id="email"
                   placeholder="Email"
                   onChange={cambiar}
                 />
@@ -146,6 +181,7 @@ const Registrarse = () => {
                   className="input100"
                   type="password"
                   name="password"
+                  id="password"
                   placeholder="Contraseña"
                   onChange={cambiar}
                 />
@@ -160,6 +196,7 @@ const Registrarse = () => {
                   className="input100"
                   type="number"
                   name="telefono"
+                  id="telefono"
                   placeholder="Telefono"
                   onChange={cambiar}
                 />
@@ -176,7 +213,8 @@ const Registrarse = () => {
               </div>
               <div className="text-center p-t-25">
                 <button className="login100-form-btn" onClick={IrLogin}>
-                  Iniciar Session <br /> <i className="bi bi-arrow-right"></i>
+                  Iniciar Session <br />
+                  <i className="bi bi-arrow-right"></i>
                 </button>
               </div>
             </form>

@@ -3,8 +3,9 @@ import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import Editarestudio from "./Editarestudio";
+//import Editarestudio from "./Editarestudio";
 //import { editar } from "../../../../back/controllers/proyectos";
+import ModalEditarEstu from "./EditarEstuPrub";
 const MySwal = withReactContent(Swal2);
 
 const Estudios = () => {
@@ -75,6 +76,10 @@ const Estudios = () => {
       console.error("Error en la solicitud:", error);
     });
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   //console.log(JSON.stringify(request));
   //const data = request.json();
   //console.log(data);
@@ -153,17 +158,18 @@ const Estudios = () => {
                       className="btn btn-warning"
                       onClick={() => {
                         setEditar(estudio._id);
+                        handleShow();
                       }}
                     >
                       <i class="bi bi-pencil-square"></i>
                     </button>
                   </h1>
                   {Editar === estudio._id && (
-                    <Editarestudio
-                      detalle={estudio.detalle}
-                      setEditar={setEditar}
-                      id={Editar}
-                    ></Editarestudio>
+                    <ModalEditarEstu
+                      show={show}
+                      handleClose={handleClose}
+                      id={estudio._id}
+                    ></ModalEditarEstu>
                   )}
                 </div>
               );

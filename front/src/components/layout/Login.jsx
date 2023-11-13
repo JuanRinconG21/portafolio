@@ -17,9 +17,7 @@ const Login = () => {
   const Loguin = async (e) => {
     e.preventDefault();
     let formulario = form;
-
     //guardar en la api
-
     const request = await fetch(Global.url + "personales/login", {
       method: "POST",
       body: JSON.stringify(formulario),
@@ -31,8 +29,9 @@ const Login = () => {
     if (data.id == 200) {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;
-      let token2 = data.user.token;
+      let token2 = data.token;
       localStorage.setItem("token", token2);
+      localStorage.setItem("user", JSON.stringify(data.user));
       //console.log(token2);
       MySwal.fire({
         title: <strong> {titulo}</strong>,
@@ -40,10 +39,13 @@ const Login = () => {
         icon: "success",
       });
       setTimeout(() => {
-        let url = window.location.href;
-        window.location.href = url + "DashBoard";
-      }, 1500);
+        window.location.reload();
+      }, 1000);
     } else {
+      const inputPass = document.getElementById("password");
+      inputPass.value = "";
+      const inputEmail = document.getElementById("email");
+      inputEmail.value = "";
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;
       MySwal.fire({
@@ -77,6 +79,7 @@ const Login = () => {
                   className="input100"
                   type="email"
                   name="email"
+                  id="email"
                   placeholder="Email"
                   onChange={cambiar}
                 />
@@ -95,6 +98,7 @@ const Login = () => {
                   type="password"
                   name="password"
                   placeholder="Contraseña"
+                  id="password"
                   onChange={cambiar}
                 />
                 <span className="focus-input100"></span>

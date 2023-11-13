@@ -1,4 +1,6 @@
+import UseAuth from "../../helpers/UseAuth";
 const Header = () => {
+  const { Autenticado } = UseAuth();
   return (
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
       <button
@@ -39,7 +41,7 @@ const Header = () => {
             aria-expanded="false"
           >
             <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-              Usuario
+              {Autenticado.nombre}
             </span>
             <img
               className="img-profile rounded-circle"

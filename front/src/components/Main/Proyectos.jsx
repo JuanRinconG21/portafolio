@@ -3,15 +3,13 @@ import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import Editarproyecto from "./Editarproyecto";
+//import Editarproyecto from "./Editarproyecto";
+import ModalEditar from "./EditarProyPrub";
 const MySwal = withReactContent(Swal2);
 
 const Proyectos = () => {
   const token = localStorage.getItem("token");
   const eliminarProyecto = (id, nombre) => {
-    // console.log("ENTRO");
-    //console.log("EL ID ES" + id);
-
     MySwal.fire({
       title: `¿ Quieres Eliminar El Proyecto de ${nombre} ?`,
       showDenyButton: true,
@@ -51,7 +49,7 @@ const Proyectos = () => {
   fetch(Global.url + "proyectos/listar/1", {
     method: "GET", // Método de solicitud (puede ser GET, POST, etc.)
     headers: {
-      Authorization: `${token}`, // Incluye el token JWT en el encabezado Authorization
+      Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNkMTIyOTg2ODIxMzA1ZjM2NzVlNDUiLCJlbWFpbCI6ImpvdGFAZ21haWwuY29tIiwiaWF0IjoxNjk5ODg0OTc2LCJleHAiOjE2OTk5NzEzNzZ9.cVz_aUHp6fkD6yS1xPqtHGI4V2XODKtdTYp3bsxFzns`, // Incluye el token JWT en el encabezado Authorization
     },
   })
     .then((response) => {
@@ -73,6 +71,10 @@ const Proyectos = () => {
   //console.log(JSON.stringify(request));
   //const data = request.json();
   //console.log(data);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className="container-fluid">
       <div className="row">
@@ -140,19 +142,18 @@ const Proyectos = () => {
                       className="btn btn-warning"
                       onClick={() => {
                         setEditar(proyecto._id);
+                        handleShow();
                       }}
                     >
                       <i class="bi bi-pencil-square"></i>
                     </button>
                   </h1>
                   {Editar === proyecto._id && (
-                    <Editarproyecto
-                      nombre={proyecto.nombre}
-                      detalle={proyecto.detalle}
-                      link={proyecto.link}
+                    <ModalEditar
+                      show={show}
+                      handleClose={handleClose}
                       id={proyecto._id}
-                      setEditar={setEditar}
-                    ></Editarproyecto>
+                    ></ModalEditar>
                   )}
                 </div>
               );

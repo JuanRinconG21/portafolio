@@ -186,8 +186,9 @@ const login = async (req, res) => {
         mensaje: "Ingreso Exitoso",
         user: {
           id: consulta._id,
-          token: token,
+          email: consulta.email,
         },
+        token: token,
       });
     }
   }
