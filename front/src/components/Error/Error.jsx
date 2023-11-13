@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 const Error = () => {
   return (
     <>
-    <style>
-    </style>
+      <style></style>
       <div id="notfound">
         <div class="notfound-bg">
           <div></div>
@@ -15,26 +15,11 @@ const Error = () => {
           <div class="notfound-404">
             <h1>404</h1>
           </div>
-          <h2>Page Not Found</h2>
-          <p>
-            The page you are looking for might have been removed had its name
-            changed or is temporarily unavailable.
-          </p>
-          <a href="#">Homepage</a>
-          <div class="notfound-social">
-            <a href="#">
-              <i class="fa fa-facebook"></i>
-            </a>
-            <a href="#">
-              <i class="fa fa-twitter"></i>
-            </a>
-            <a href="#">
-              <i class="fa fa-pinterest"></i>
-            </a>
-            <a href="#">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </div>
+          <h2>Pagina No Encontrada</h2>
+          <p>La pagina que Buscaste No Existe Vuelve a Donde Estabas</p>
+          <NavLink to={"/"}>
+            <a href="#">Volver</a>
+          </NavLink>
         </div>
       </div>
     </>
