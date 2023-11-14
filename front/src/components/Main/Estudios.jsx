@@ -169,6 +169,7 @@ const Estudios = () => {
                       show={show}
                       handleClose={handleClose}
                       id={estudio._id}
+                      detalle={estudio.detalle}
                     ></ModalEditarEstu>
                   )}
                 </div>

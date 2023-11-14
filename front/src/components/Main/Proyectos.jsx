@@ -135,7 +135,7 @@ const Proyectos = () => {
                         eliminarProyecto(proyecto._id, proyecto.nombre);
                       }}
                     >
-                      <i class="bi bi-trash3-fill"></i>
+                      <i className="bi bi-trash3-fill"></i>
                     </button>
                     <button
                       type="button"
@@ -145,14 +145,17 @@ const Proyectos = () => {
                         handleShow();
                       }}
                     >
-                      <i class="bi bi-pencil-square"></i>
+                      <i className="bi bi-pencil-square"></i>
                     </button>
                   </h1>
                   {Editar === proyecto._id && (
                     <ModalEditar
                       show={show}
                       handleClose={handleClose}
-                      id={proyecto._id}
+                      id={proyecto._id}                     
+                      nombre={proyecto.nombre}
+                      descripcion={proyecto.detalle}
+                      link={proyecto.link}
                     ></ModalEditar>
                   )}
                 </div>
