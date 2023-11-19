@@ -7,7 +7,15 @@ import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal2);
 
-const ModalEditar = ({ show, handleClose, id, nombre, descripcion, link }) => {
+const ModalEditar = ({
+  show,
+  handleClose,
+  id,
+  nombre,
+  descripcion,
+  link,
+  setEditar,
+}) => {
   const { form, cambiar } = HelperForm({});
   const token = localStorage.getItem("token");
   const Editar = async (e) => {
@@ -33,7 +41,7 @@ const ModalEditar = ({ show, handleClose, id, nombre, descripcion, link }) => {
       setEditar(0);
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 500);
     } else {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;
@@ -51,21 +59,20 @@ const ModalEditar = ({ show, handleClose, id, nombre, descripcion, link }) => {
           <Modal.Title>Editar</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {" "}
+          {" "}
           <form className="user" onSubmit={Editar}>
             <div className="form-group">
-              
               <div className="form-group">
-              <input
-                type="text"
-                className="form-control form-control-user"
-                id="exampleInputEmail"
-                name="nombre"
-                placeholder="Nombre"
-                onChange={cambiar}
-                defaultValue={nombre}
-              />
-            </div>
+                <input
+                  type="text"
+                  className="form-control form-control-user"
+                  id="exampleInputEmail"
+                  name="nombre"
+                  placeholder="Nombre"
+                  onChange={cambiar}
+                  defaultValue={nombre}
+                />
+              </div>
             </div>
             <div className="form-group">
               <input
@@ -89,7 +96,7 @@ const ModalEditar = ({ show, handleClose, id, nombre, descripcion, link }) => {
                 defaultValue={link}
               />
             </div>
-            
+
             <hr />
             <button
               type="submit"
@@ -98,9 +105,7 @@ const ModalEditar = ({ show, handleClose, id, nombre, descripcion, link }) => {
               Editar
             </button>
           </form>{" "}
-          
-           </Modal.Body>
-        
+        </Modal.Body>
       </Modal>
     </>
   );

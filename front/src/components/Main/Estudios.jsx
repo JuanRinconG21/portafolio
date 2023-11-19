@@ -9,6 +9,10 @@ import ModalEditarEstu from "./EditarEstuPrub";
 const MySwal = withReactContent(Swal2);
 
 const Estudios = () => {
+  const [estudios, setEstudios] = useState(null);
+  const [Editar, setEditar] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalp, setTotalp] = useState(null);
   const token = localStorage.getItem("token");
   const eliminarEstudio = (id, nombre) => {
     // console.log("ENTRO");
@@ -46,38 +50,82 @@ const Estudios = () => {
     });
   };
   //const { form, cambiar } = HelperForm({});
+  useEffect(() => {
+    listarEstudios();
+  }, []);
 
-  const [estudios, setEstudios] = useState(null);
-  const [Editar, setEditar] = useState(null);
   //const [proyectosMap, setProyectosMap] = useState(null);
-
-  fetch(Global.url + "estudios/listar/1", {
-    method: "GET", // Método de solicitud (puede ser GET, POST, etc.)
-    headers: {
-      Authorization: `${token}`, // Incluye el token JWT en el encabezado Authorization
-    },
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      // Realiza alguna operación con los datos de la respuesta (data)
-      if (data.perfiles.length == 0) {
-        console.log("ACA ESTA");
-        setEstudios(null);
-      } else {
-        setEstudios(data.perfiles);
+  const btnSiguiente = document.getElementById("siguiente");
+  const btnAnterior = document.getElementById("anterior");
+  const listarEstudios = async (nextpages = 1) => {
+    const obtenerEstuidos = await fetch(
+      Global.url + "estudios/listar/" + nextpages,
+      {
+        method: "GET", // Método de solicitud (puede ser GET, POST, etc.)
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `${token}`, // Incluye el token JWT en el encabezado Authorization
+        },
       }
+    );
+    const estudios = await obtenerEstuidos.json();
+    setTotalp(estudios.totalPaginas);
+    if (estudios.perfiles.length == 0) {
+      setEstudios(null);
+    } else {
+      setEstudios(estudios.perfiles);
+    }
 
-      //console.log("DATA PERFILES", data.perfiles);
+    /*   await fetch(Global.url + "estudios/listar/" + nextpages, {
+      method: "GET", // Método de solicitud (puede ser GET, POST, etc.)
+      headers: {
+        Authorization: `${token}`, // Incluye el token JWT en el encabezado Authorization
+      },
     })
-    .catch((error) => {
-      console.error("Error en la solicitud:", error);
-    });
-
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        //console.log(data);
+        // Realiza alguna operación con los datos de la respuesta (data)
+        if (data.perfiles.length == 0) {
+          setEstudios(null);
+        } else {
+          setEstudios(data.perfiles);
+        }
+        //console.log("DATA PERFILES", data.perfiles);
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });  */
+  };
+  const NextPage = () => {
+    if (page >= totalp) {
+      MySwal.fire({
+        icon: "error",
+        title: "Oppss..",
+        text: "No hay mas informacion\npara mostrar",
+      });
+    } else {
+      let next = page + 1;
+      setPage(next);
+      listarEstudios(next);
+    }
+  };
+  const AntPage = () => {
+    if (page == 1) {
+      MySwal.fire({
+        icon: "error",
+        title: "Oppss..",
+        text: "Ya estas en la Primera Pagina",
+      });
+    } else {
+      let next = page - 1;
+      setPage(next);
+      listarEstudios(next);
+    }
+  };
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   //console.log(JSON.stringify(request));
@@ -87,33 +135,8 @@ const Estudios = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-3">
-          <div className="card shadow mb-4">
-            <div className="card-header py-3">
-              <p className="m-0 font-weight-bold text-primary">
-                Nombre Usuario
-              </p>
-              <img
-                className="img-profile rounded-circle "
-                style={{ with: "70px", height: "70px" }}
-                src="../../src/assets/images/undraw_profile.svg"
-              ></img>
-            </div>
-            <div
-              className="div"
-              style={{ marginTop: "5px", marginLeft: "10px" }}
-            >
-              <p>Nombre:</p>
-              <br />
-              <p>Telefono</p>
-              <br />
-              <p>direccion</p>
-            </div>
-            <hr />
-          </div>
-        </div>
-
-        <div className="col-lg-9">
+        <div className="col-2"></div>
+        <div className="col-lg-8">
           {estudios != null ? (
             estudios.map((estudio) => {
               return (
@@ -170,6 +193,7 @@ const Estudios = () => {
                       handleClose={handleClose}
                       id={estudio._id}
                       detalle={estudio.detalle}
+                      setEditar={setEditar}
                     ></ModalEditarEstu>
                   )}
                 </div>
@@ -179,6 +203,26 @@ const Estudios = () => {
             <h1 className="text-center">NO HAY ESTUDIOS DISPONIBLES</h1>
           )}
         </div>
+        <div className="col-2"></div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <button id="anterior" onClick={AntPage} class="page-link">
+                Anterior
+              </button>
+            </li>
+            <li class="page-item">
+              <button
+                id="siguiente"
+                onClick={NextPage}
+                class="page-link"
+                href="#"
+              >
+                Siguiente
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

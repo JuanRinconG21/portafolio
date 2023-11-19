@@ -6,6 +6,7 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal2);
 
 const Crearestudio = () => {
+  const inputdetalle = document.getElementById("detalle");
   const { form, cambiar } = HelperForm({});
   const token = localStorage.getItem("token");
   const AgregarEstudio = async (e) => {
@@ -31,6 +32,7 @@ const Crearestudio = () => {
         html: <i>{mensaje}</i>,
         icon: "success",
       });
+      inputdetalle.value = "";
     } else {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;
@@ -64,7 +66,6 @@ const Crearestudio = () => {
                         onChange={cambiar}
                         style={{ borderRadius: "50px", fontSize: "100%" }}
                       >
-                        <option value="N/A">Selecciona una opcion: </option>
                         <option value="TECNICO">Tecnico</option>
                         <option value="TECNOLOGO">Tecnologo</option>
                         <option value="PROFESIONAL">Profesional</option>
@@ -77,7 +78,7 @@ const Crearestudio = () => {
                       <input
                         type="text"
                         className="form-control form-control-user"
-                        id="exampleInputEmail"
+                        id="detalle"
                         name="detalle"
                         placeholder="Detalles"
                         onChange={cambiar}
@@ -94,7 +95,7 @@ const Crearestudio = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="tipo" style={{ marginLeft: "53%" }}>
+                      <label htmlFor="tipo" style={{ textAlign: "center" }}>
                         Notas
                       </label>
                       <select
@@ -104,7 +105,6 @@ const Crearestudio = () => {
                         onChange={cambiar}
                         style={{ borderRadius: "50px", fontSize: "100%" }}
                       >
-                        <option value="N/A">Selecciona alguna Nota: </option>
                         <option value="APROBADO">Aprobado</option>
                         <option value="NO APROBADO">No Aprobado</option>
                         <option value="EN PROCESO">En Proceso</option>

@@ -3,67 +3,62 @@ import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { AuthProvider } from "../../context/AuthProvider";
+import useAuth from "../../helpers/UseAuth";
 const MySwal = withReactContent(Swal2);
 
 const Inicio = () => {
   const { form, cambiar } = HelperForm({});
-
-  const AgregarProyecto = async (e) => {
-    e.preventDefault();
-    let formulario = form;
-
-    //guardar en la api
-
-    const request = await fetch(Global.url + "proyectos/crear", {
-      method: "POST",
-      body: JSON.stringify(formulario),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNkMTIyOTg2ODIxMzA1ZjM2NzVlNDUiLCJlbWFpbCI6ImpvdGFAZ21haWwuY29tIiwiaWF0IjoxNjk4ODQ1NTQ1LCJleHAiOjE2OTg5MzE5NDV9.7OuS3GfXRlyIB-O5VD0u3lz9cm88cwP32iTFgCZWYxM`,
-      },
-    });
-    const data = await request.json();
-    if (data.id == 200) {
-      let titulo = data.Encabezado;
-      let mensaje = data.mensaje;
-      MySwal.fire({
-        title: <strong> {titulo}</strong>,
-        html: <i>{mensaje}</i>,
-        icon: "success",
-      });
-    } else {
-      let titulo = data.Encabezado;
-      let mensaje = data.mensaje;
-      MySwal.fire({
-        title: <strong> {titulo}</strong>,
-        html: <i>{mensaje}</i>,
-        icon: "error",
-      });
-    }
-  };
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+  const userObj = JSON.parse(user);
+  const iduser = userObj.id;
+  const nombreuser = userObj.nombre;
+  const { Autenticado } = useAuth();
   return (
-    <div className="card shadow mb-4">
-      <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 className="m-0 font-weight-bold text-primary">Bienvenido</h6>
-        <div className="dropdown no-arrow">
-          <a
-            className="dropdown-toggle"
-            href="#"
-            role="button"
-            id="dropdownMenuLink"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-          </a>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-2"></div>
+        <div className="col-8">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3">
+              <center>
+                <img
+                  className="img-profile rounded-circle "
+                  style={{ height: "30%", width: "30%" }}
+                  src="../../src/assets/images/undraw_profile.svg"
+                ></img>
+              </center>
+            </div>
+            <div
+              className="div"
+              style={{ marginTop: "5px", marginLeft: "10px" }}
+            >
+              <p style={{ fontSize: "250%" }}>
+                <span style={{ fontWeight: "bold", marginRight: "10px" }}>
+                  Nombre:
+                </span>
+                {Autenticado.nombre}
+              </p>
+              <br />
+              <p style={{ fontSize: "250%" }}>
+                <span style={{ fontWeight: "bold", marginRight: "10px" }}>
+                  Telefono:
+                </span>{" "}
+                {Autenticado.telefono}
+              </p>
+              <br />
+              <p style={{ fontSize: "250%" }}>
+                <span style={{ fontWeight: "bold", marginRight: "10px" }}>
+                  Direccion:
+                </span>{" "}
+                {Autenticado.direccion}
+              </p>
+            </div>
+            <hr />
+          </div>
         </div>
-      </div>
-
-      <div className="card-body">
-        <p>
-          me 
-        </p>
+        <div className="col-2"></div>
       </div>
     </div>
   );

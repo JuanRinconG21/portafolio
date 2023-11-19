@@ -26,17 +26,23 @@ export const AuthProvider = ({ children }) => {
     const userObj = JSON.parse(user);
     const id = userObj.id;
     // Comprobacion del token del localstorage vs el del Backend
-
-    const request = await fetch(Global.url + "personales/listarUno/" + id, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    });
-    const data = await request.json();
-
-    setAutenticado(data.mensaje);
+    try {
+      const request = await fetch(Global.url + "personales/listarUno/" + id, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      });
+      if (request.status === 400) {
+        return false;
+      } else {
+        const data = await request.json();
+        setAutenticado(data.mensaje);
+      }
+    } catch (error) {
+      console.log("OCURRIO UN ERROR");
+    }
   };
 
   //=======================================================================================================

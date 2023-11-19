@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import HelperForm from "../../helpers/HelperForm";
 import { Global } from "../../helpers/Global";
 import Swal2 from "sweetalert2";
@@ -8,6 +8,9 @@ import ModalEditar from "./EditarProyPrub";
 const MySwal = withReactContent(Swal2);
 
 const Proyectos = () => {
+  useEffect(() => {
+    listarProyectos();
+  }, []);
   const token = localStorage.getItem("token");
   const eliminarProyecto = (id, nombre) => {
     MySwal.fire({
@@ -45,11 +48,13 @@ const Proyectos = () => {
 
   const [proyectos, setProyectos] = useState(null);
   const [Editar, setEditar] = useState(0);
+  const [page, setPage] = useState(1);
+  const [totalp, setTotalp] = useState(null);
   //const [proyectosMap, setProyectosMap] = useState(null);
-  fetch(Global.url + "proyectos/listar/1", {
+  /*   fetch(Global.url + "proyectos/listar/1", {
     method: "GET", // Método de solicitud (puede ser GET, POST, etc.)
     headers: {
-      Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNkMTIyOTg2ODIxMzA1ZjM2NzVlNDUiLCJlbWFpbCI6ImpvdGFAZ21haWwuY29tIiwiaWF0IjoxNjk5ODg0OTc2LCJleHAiOjE2OTk5NzEzNzZ9.cVz_aUHp6fkD6yS1xPqtHGI4V2XODKtdTYp3bsxFzns`, // Incluye el token JWT en el encabezado Authorization
+      Authorization: `${token}`, // Incluye el token JWT en el encabezado Authorization
     },
   })
     .then((response) => {
@@ -67,44 +72,60 @@ const Proyectos = () => {
     })
     .catch((error) => {
       console.error("Error en la solicitud:", error);
-    });
-  //console.log(JSON.stringify(request));
-  //const data = request.json();
-  //console.log(data);
-  const [show, setShow] = useState(false);
+    }); */
 
+  const listarProyectos = async (nextpages = 1) => {
+    const obtnerProyectos = await fetch(
+      Global.url + "proyectos/listar/" + nextpages,
+      {
+        method: "GET", // Método de solicitud (puede ser GET, POST, etc.)
+        headers: {
+          Authorization: `${token}`, // Incluye el token JWT en el encabezado Authorization
+        },
+      }
+    );
+    const proyectos2 = await obtnerProyectos.json();
+    setTotalp(proyectos2.totalPaginas);
+    if (proyectos2.perfiles.length == 0) {
+      setProyectos(null);
+    } else {
+      setProyectos(proyectos2.perfiles);
+    }
+  };
+  const NextPage = () => {
+    if (page >= totalp) {
+      MySwal.fire({
+        icon: "error",
+        title: "Oppss..",
+        text: "No hay mas informacion\npara mostrar",
+      });
+    } else {
+      let next = page + 1;
+      setPage(next);
+      listarProyectos(next);
+    }
+  };
+  const AntPage = () => {
+    if (page == 1) {
+      MySwal.fire({
+        icon: "error",
+        title: "Oppss..",
+        text: "Ya estas en la Primera Pagina",
+      });
+    } else {
+      let next = page - 1;
+      setPage(next);
+      listarProyectos(next);
+    }
+  };
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-3">
-          <div className="card shadow mb-4">
-            <div className="card-header py-3">
-              <p className="m-0 font-weight-bold text-primary">
-                Nombre Usuario
-              </p>
-              <img
-                className="img-profile rounded-circle "
-                style={{ with: "70px", height: "70px" }}
-                src="../../src/assets/images/undraw_profile.svg"
-              ></img>
-            </div>
-            <div
-              className="div"
-              style={{ marginTop: "5px", marginLeft: "10px" }}
-            >
-              <p>Nombre:</p>
-              <br />
-              <p>Telefono</p>
-              <br />
-              <p>direccion</p>
-            </div>
-            <hr />
-          </div>
-        </div>
-
-        <div className="col-lg-9">
+        <div className="col-2"></div>
+        <div className="col-lg-8">
           {proyectos != null ? (
             proyectos.map((proyecto) => {
               return (
@@ -152,10 +173,11 @@ const Proyectos = () => {
                     <ModalEditar
                       show={show}
                       handleClose={handleClose}
-                      id={proyecto._id}                     
+                      id={proyecto._id}
                       nombre={proyecto.nombre}
                       descripcion={proyecto.detalle}
                       link={proyecto.link}
+                      setEditar={setEditar}
                     ></ModalEditar>
                   )}
                 </div>
@@ -167,6 +189,26 @@ const Proyectos = () => {
             </h1>
           )}
         </div>
+        <div className="col-2"></div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <button id="anterior" onClick={AntPage} class="page-link">
+                Anterior
+              </button>
+            </li>
+            <li class="page-item">
+              <button
+                id="siguiente"
+                onClick={NextPage}
+                class="page-link"
+                href="#"
+              >
+                Siguiente
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

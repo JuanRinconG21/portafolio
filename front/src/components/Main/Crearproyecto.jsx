@@ -9,11 +9,12 @@ const Crearproyecto = () => {
   const { form, cambiar } = HelperForm({});
   const token = localStorage.getItem("token");
   const AgregarProyecto = async (e) => {
+    const nombre = document.getElementById("nombre");
+    const detalle = document.getElementById("detalle");
+    const link = document.getElementById("link");
     e.preventDefault();
     let formulario = form;
-
     //guardar en la api
-
     const request = await fetch(Global.url + "proyectos/crear", {
       method: "POST",
       body: JSON.stringify(formulario),
@@ -31,6 +32,9 @@ const Crearproyecto = () => {
         html: <i>{mensaje}</i>,
         icon: "success",
       });
+      nombre.value = "";
+      detalle.value = "";
+      link.value = "";
     } else {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;
@@ -58,7 +62,7 @@ const Crearproyecto = () => {
                       <input
                         type="text"
                         className="form-control form-control-user"
-                        id=""
+                        id="nombre"
                         placeholder="Nombre"
                         name="nombre"
                         onChange={cambiar}
@@ -68,7 +72,7 @@ const Crearproyecto = () => {
                       <textarea
                         type="text"
                         className="form-control form-control-user"
-                        id=""
+                        id="detalle"
                         placeholder="Descripcion"
                         name="detalle"
                         onChange={cambiar}
@@ -78,7 +82,7 @@ const Crearproyecto = () => {
                       <input
                         type="url"
                         className="form-control form-control-user"
-                        id=""
+                        id="link"
                         placeholder="Link"
                         name="link"
                         onChange={cambiar}
