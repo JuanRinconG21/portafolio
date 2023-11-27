@@ -15,6 +15,7 @@ const ModalEditar = ({
   descripcion,
   link,
   setEditar,
+  listarProyectos,
 }) => {
   const { form, cambiar } = HelperForm({});
   const token = localStorage.getItem("token");
@@ -39,9 +40,7 @@ const ModalEditar = ({
         icon: "success",
       });
       setEditar(0);
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
+      listarProyectos();
     } else {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;

@@ -7,7 +7,14 @@ import Swal2 from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal2);
 
-const ModalEditarEstu = ({ show, handleClose, id, detalle, setEditar }) => {
+const ModalEditarEstu = ({
+  show,
+  handleClose,
+  id,
+  detalle,
+  setEditar,
+  listarEstudios,
+}) => {
   const { form, cambiar } = HelperForm({});
   const token = localStorage.getItem("token");
   const Editar = async (e) => {
@@ -31,9 +38,7 @@ const ModalEditarEstu = ({ show, handleClose, id, detalle, setEditar }) => {
         icon: "success",
       });
       setEditar(0);
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
+      listarEstudios();
     } else {
       let titulo = data.Encabezado;
       let mensaje = data.mensaje;

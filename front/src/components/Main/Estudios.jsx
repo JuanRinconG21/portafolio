@@ -42,6 +42,7 @@ const Estudios = () => {
                 html: <i>Estudio Eliminado Correctamente</i>,
                 icon: "success",
               });
+              listarEstudios();
             }
           });
       } else if (result.isDenied) {
@@ -194,6 +195,7 @@ const Estudios = () => {
                       id={estudio._id}
                       detalle={estudio.detalle}
                       setEditar={setEditar}
+                      listarEstudios={listarEstudios}
                     ></ModalEditarEstu>
                   )}
                 </div>

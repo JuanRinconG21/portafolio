@@ -15,7 +15,7 @@ import LayaoutPublico from "../components/layout/LayaoutPublico";
 import Error from "../components/Error/Error";
 import { AuthProvider } from "../context/AuthProvider";
 import Salir from "../components/Main/Salir";
-import Tabla from "../components/Pruebas/Tabla";
+//import Tabla from "../components/Pruebas/Tabla";
 const Routing = () => {
   //Creacion del sistema de rutas
   return (
@@ -42,7 +42,6 @@ const Routing = () => {
             <Route path="Salir" element={<Salir></Salir>}></Route>
           </Route>
           <Route path="*" element={<Error></Error>}></Route>
-          <Route path="/Tabla" element={<Tabla></Tabla>}></Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

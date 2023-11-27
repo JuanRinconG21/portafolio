@@ -37,6 +37,7 @@ const Proyectos = () => {
                 html: <i>Proyecto Eliminado Correctamente</i>,
                 icon: "success",
               });
+              listarProyectos();
             }
           });
       } else if (result.isDenied) {
@@ -178,6 +179,7 @@ const Proyectos = () => {
                       descripcion={proyecto.detalle}
                       link={proyecto.link}
                       setEditar={setEditar}
+                      listarProyectos={listarProyectos}
                     ></ModalEditar>
                   )}
                 </div>
